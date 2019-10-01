@@ -1762,6 +1762,10 @@ body:not(.home-page) .main_content_block {
 	min-height: 600px;
 }
 
+.content_block_text *:first-child {
+	margin-top: 0;
+}
+
 .content_block .content_container .content_block_text ul,
 .content_block .content_container .content_block_text ol {
 	list-style: none;
@@ -2185,7 +2189,7 @@ body:not(.home-page) .main_content_block {
 	border-radius: 4px;
 	color: #999baa;
 	border: solid 1px #eff0f9;
-	transition: background 0.2s ease, color 0.2s ease;
+	transition: background-color 0.2s ease, color 0.2s ease;
 }
 .content_block .content_container .content_block_head .article-action-items ul li .action-item span,
 .content_block .content_container .content_block_head .article-action-items ul li .action-item a {
@@ -2200,6 +2204,82 @@ body:not(.home-page) .main_content_block {
 	font-size: 22px;
 	vertical-align: bottom;
 	margin-right: 5px;
+	position: relative;
+	width: 22px;
+}
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa:before,
+.content_block .content_container .content_block_head .article-info ul li .fa:before {
+	visibility: hidden;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa:after,
+.content_block .content_container .content_block_head .article-info ul li .fa:after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 0;
+	left: 0;
+}
+
+.content_block .content_container .content_block_head .article-info ul li .fa {
+	position: relative;
+}
+
+.content_block .content_container .content_block_head .article-info ul li .fa:after {
+	width: 12px;
+	height: 12px;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa.fa-print:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/print11.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa.fa-share-square-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/share.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa.fa-github:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/github11.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa.fa-moon-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/dark.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa.fa-sun-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/sun.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item:hover i.fa.fa-print:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/print-hover.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item:hover i.fa.fa-share-square-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/share-hover.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item:hover i.fa.fa-github:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/github-hover.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item:hover i.fa.fa-moon-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/dark-hover.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-action-items ul li .action-item:hover i.fa.fa-sun-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/sun-hover.png) no-repeat center;
+}
+
+.content_block .content_container .content_block_head .article-info ul li .fa.fa-calendar:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/calendar.png) no-repeat center;
+	background-size: contain;
+}
+
+.content_block .content_container .content_block_head .article-info ul li .fa.fa-clock-o:after {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/time.png) no-repeat center;
+	background-size: contain;
 }
 
 .content_block .content_container .content_block_head .article-action-items ul li .action-item:hover {
@@ -2576,11 +2656,28 @@ body.dark_theme header#doc_header .header_bottom:after {
 body.dark_theme .content_block .content_container .content_block_head .article-action-items ul li .action-item:hover {
 	border: solid 1px #56577a;
 	background-color: #444562;
+	color: var(--color-primary);
 }
 
 body.dark_theme .container .docs-main-content .left_sidebar .left_sidebar_nav ul ul li a[data-option="on"] + ul,
 body.dark_theme .container .docs-main-content .left_sidebar .left_sidebar_nav ul ul li a[data-option="on"] {
 	background: var(--bg-dark-mode-primary);
+}
+
+body.dark_theme .content_block .content_container .content_block_head .article-action-items ul li .action-item i.fa:not(.fa-sun-o):after {
+	filter: opacity(0.5);
+}
+
+body.dark_theme
+	.content_block
+	.content_container
+	.content_block_head
+	.article-action-items
+	ul
+	li
+	.action-item:hover
+	i.fa:not(.fa-sun-o):after {
+	filter: opacity(1);
 }
 /* dark theme end */
 

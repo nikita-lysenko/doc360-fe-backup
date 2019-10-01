@@ -1,0 +1,276 @@
+.docs-only {
+	display: none !important;
+}
+
+.footer {
+	background-color: #494b4f;
+	padding: 55px 0;
+	border: none;
+}
+
+.footer ul {
+	list-style: none;
+}
+
+.home-page .footer {
+	box-shadow: 0 0 0 400px #494b4f;
+}
+
+.footer-container {
+	display: grid;
+	grid-template-columns: 1fr 4fr 2fr;
+	max-width: 1600px;
+	margin: 0 auto;
+}
+
+.footer a,
+.footer span {
+	color: #7f858d;
+}
+
+.footer-logo img,
+.footer-logo svg {
+	width: 160px;
+	height: 65px;
+	fill: #7f858d;
+}
+
+.footer-logo-section span {
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0.08px;
+	color: #7f858d;
+	display: block;
+	margin-left: 55px;
+	min-width: 135px;
+}
+
+.footer-nav ul {
+	display: flex;
+	justify-content: center;
+}
+
+.footer-nav ul li {
+	padding: 35px 50px;
+	text-align: center;
+}
+
+.footer-nav ul li a {
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0.08px;
+}
+
+.footer-nav ul li a:hover {
+	cursor: pointer;
+	color: #1fbea0;
+}
+
+.footer-contacts {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.footer .social {
+	display: flex;
+}
+
+.footer .social a {
+	display: block;
+	background-color: #7f858d;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	margin: 25px 10px;
+	position: relative;
+}
+
+.footer .social a img,
+.footer .social a svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 21px;
+	max-height: 21px;
+	color: #494b4f;
+	fill: #494b4f;
+}
+
+.footer .social a:hover {
+	background-color: #1fbea0;
+}
+
+.footer adress a,
+.footer adress span {
+	display: block;
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0.08px;
+	margin: 10px 0 23px 10px;
+	position: relative;
+	padding-left: 35px;
+	line-height: 24px;
+}
+
+.footer adress a:hover {
+	color: #7f858d;
+}
+
+.footer adress a img,
+.footer adress a svg {
+	width: 24px;
+	height: 17px;
+	fill: #7f858d;
+}
+
+.footer adress a img,
+.footer adress span img,
+.footer adress span svg,
+.footer adress a svg {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(0, -50%);
+}
+
+.footer adress span img,
+.footer adress span svg {
+	width: 18px;
+	height: 24px;
+	left: 3px;
+	fill: #7f858d;
+}
+
+@media screen and (max-width: 1378px) {
+	.footer-container {
+		grid-template-columns: 1fr 4fr;
+	}
+
+	.footer-contacts {
+		grid-column: 1/4;
+		justify-content: center;
+		margin-top: 40px;
+	}
+
+	.footer-nav ul {
+		justify-content: flex-end;
+		flex-wrap: wrap;
+	}
+
+	.footer-nav ul li {
+		padding: 35px 20px;
+	}
+
+	.footer-nav ul li a {
+		font-size: var(--font-size-default);
+	}
+
+	.footer-nav ul li:last-of-type {
+		padding-right: 0;
+	}
+
+	.footer .social {
+		justify-content: center;
+	}
+
+	.footer adress {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.footer adress a,
+	.footer adress span {
+		font-size: var(--font-size-default);
+	}
+}
+
+@media screen and (max-width: 549px) {
+	.footer-logo-section {
+		grid-row: 3;
+	}
+
+	.footer-logo-section .footer-logo span {
+		margin-left: 0;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	.home-page .footer {
+		padding: 40px 0 30px;
+	}
+
+	.footer-contacts,
+	.footer adress,
+	.footer-nav,
+	.footer-nav ul {
+		display: block;
+	}
+
+	.footer-contacts {
+		margin-top: 15px;
+	}
+
+	.footer .social {
+		justify-content: space-between;
+	}
+
+	.footer-nav ul li {
+		text-align: left;
+		padding: 16px 0;
+		border-bottom: 1px solid #535559;
+	}
+
+	.footer-nav ul li:first-child {
+		border-top: 1px solid #535559;
+	}
+}
+
+/*Docs Pages Footer*/
+
+body:not(.home-page) .docs-only {
+	display: block !important;
+}
+
+body:not(.home-page) .footer {
+	padding: 10px 0;
+}
+
+body:not(.home-page) .footer-nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+body:not(.home-page) .footer-contacts-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+body:not(.home-page) .footer-nav ul {
+	margin: 0;
+}
+
+body:not(.home-page) .footer-nav ul li {
+	padding: 20px 50px;
+}
+
+body:not(.home-page) .footer .social a {
+	margin: 5px;
+}
+
+body:not(.home-page) .footer adress {
+	display: none;
+}
+
+body:not(.home-page) .footer-logo img,
+body:not(.home-page) .footer-logo svg {
+	width: 140px;
+	height: auto;
+	max-height: none;
+}
+
+body:not(.home-page) .footer-logo-section span {
+	display: none;
+}
