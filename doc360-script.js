@@ -469,6 +469,67 @@ function GithubUrlElem() {
 	};
 }
 
+//SIDEBAR HEIGHT CALCULATOR
+
+function sideBarHeightCalculator(selector, relativeElementSelector, margin) {
+	this.element = document.querySelector(selector);
+	this.relElem = document.querySelector(relativeElementSelector);
+	this.screenHeight = window.innerHeight;
+	this.defaultMargin = margin * 3;
+
+	this.checkDistance = () => {
+		var elementOffsetY = this.element.getBoundingClientRect().top;
+		var relElemOffsetY = this.relElem.getBoundingClientRect().top;
+
+		if (relElemOffsetY < this.screenHeight) {
+			this.element.style.minHeight = relElemOffsetY - elementOffsetY - margin + "px";
+		}
+		if (relElemOffsetY > this.screenHeight) {
+			this.element.style.minHeight = this.screenHeight - elementOffsetY - this.defaultMargin + "px";
+		}
+	};
+
+	this.init = function() {
+		if (!this.element) {
+			console.log("no sideBar: " + selector);
+			return;
+		}
+		window.addEventListener("load", this.checkDistance);
+		window.addEventListener("scroll", this.checkDistance);
+		console.log("sideBar height calculator: " + selector);
+	};
+}
+
+//INPUT PLACEHOLDER CORRECOTOR
+
+function inputPlaceholderCorrecotor(selector, placeholder) {
+	this.input = document.querySelector(selector);
+	this.init = function() {
+		if (!this.input) return;
+
+		this.input.placeholder = placeholder;
+		this.input.onfocus = function() {
+			this.placeholder = "";
+		};
+		this.input.onblur = function() {
+			this.placeholder = placeholder;
+		};
+	};
+}
+
+//SELECT2 INITER FOR HUBSPOT FORMS
+
+function select2IniterForHubspotForms() {
+	document.addEventListener("hbsptInit", e => {
+		var $hbptSelects = $(e.target).find("select");
+		if ($hbptSelects.length != 0) {
+			$hbptSelects.select2({ minimumResultsForSearch: -1 });
+		} else {
+			console.log("no hubspot forms");
+		}
+	});
+}
+
 /////////////////////////////////////////////////////////// INIT ////////////////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -476,19 +537,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	mobileSearchOverlay();
 	searchEnterTrigger();
 	window.addEventListener("resize", mobileSearchOverlay);
-
+	//select2 init for hubspot forms
+	select2IniterForHubspotForms();
 	// INIT HOME PAGE ONLY
 	if (document.querySelector("#home-page")) {
 		//slider init
 		const sliderHome = $(".slider-home");
 		sliderHome.slick(sliderHomeConfig);
 		sliderHome.on("init", iFrameHelper);
-		//select2 init
-		document.addEventListener("hbsptInit", e => {
-			$(e.target)
-				.find("select")
-				.select2({ minimumResultsForSearch: -1 });
-		});
 		//home page tabs hubspot
 		new TabHandler(".tab-container", ".tab-nav-link", ".tab-pane").init();
 		new iFrameHelper(".slider-home-container iframe", Infinity).init();
@@ -500,14 +556,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		new ScriptAndLinkLoader(".script-link-loader").init();
 		new Anchorer().init();
 		new ScriptEmbedder(".script-embed").init();
+		new sideBarHeightCalculator(".left_sidebar_main", ".footer", 20).init();
+		new sideBarHeightCalculator("#right_sidebar", ".footer", 20).init();
+		sideBarHeightCalculator();
 		//github button
 		new GithubUrlElem().init();
 		new ImageMapster().init();
 		versionSelectionReplacer();
 		watermarkDisabler();
 		//placeholders swap
-		document.querySelector(".aa-input-search").placeholder = "Looking for something specific? Search here";
-		document.querySelector("#category_filter").placeholder = "Search by topics";
+		new inputPlaceholderCorrecotor(".aa-input-search", "Looking for something specific? Search here").init();
+		new inputPlaceholderCorrecotor("#category_filter", "Search by topics").init();
 	}
 	//////////////////
 });
