@@ -393,8 +393,9 @@ function searchEnterTrigger() {
 			searchBtn.click();
 		}
 	}
-
-	searchContainer.addEventListener("keydown", searchEventHandler, true);
+	if (searchContainer) {
+		searchContainer.addEventListener("keydown", searchEventHandler, true);
+	}
 }
 
 // WATERMARK DISABLER
@@ -431,10 +432,29 @@ function versionSelectionReplacer() {
 	var vSelect = document.querySelector("#doc_header .versions-selection");
 	var docButtonsContainers = document.querySelectorAll("#doc_header .header_top_nav_right");
 
+	function assignToggler(elem) {
+		var select = elem.querySelector(".version-select");
+		if (!select) return;
+		select.addEventListener("click", e => {
+			e.stopPropagation();
+			if (!elem.classList.contains("open")) {
+				elem.classList.add("open");
+			} else {
+				elem.classList.remove("open");
+			}
+		});
+		document.addEventListener("click", () => {
+			if (elem.classList.contains("open")) {
+				elem.classList.remove("open");
+			}
+		});
+	}
+
 	docButtonsContainers.forEach(el => {
 		el.querySelector("ul li").style.display = "none";
 		var cln = vSelect.cloneNode(true);
 		el.querySelector("ul").appendChild(cln);
+		assignToggler(cln);
 	});
 	vSelect.style.display = "none";
 }
@@ -446,8 +466,13 @@ function GithubUrlElem() {
 	this.href = "https://github.com/spryker/spryker-documentation";
 	this.link = document.createElement("li");
 	this.parentSelector = ".content_block .content_container .content_block_head .article-action-items ul";
+	this.parent = document.querySelector(this.parentSelector);
 
 	this.init = function() {
+		if (!this.parent) {
+			console.log("no github button");
+			return;
+		}
 		this.setLinkAttrs();
 		this.appendLink();
 		console.log("edit on github added");
@@ -462,18 +487,19 @@ function GithubUrlElem() {
 			' target="_blank">Edit on Github</a></div>';
 	};
 
-	this.appendLink = function() {
-		var parent = document.querySelector(this.parentSelector);
-		var refElem = parent.children[parent.children.length - 1];
-		parent.insertBefore(this.link, refElem);
+	this.appendLink = () => {
+		var refElem = this.parent.children[this.parent.children.length - 1];
+		this.parent.insertBefore(this.link, refElem);
 	};
 }
 
 //SIDEBAR HEIGHT CALCULATOR
 
-function sideBarHeightCalculator(selector, relativeElementSelector, margin) {
+function sideBarHeightCalculator(selector, relativeElementSelector, margin, realHeightElem, ratio) {
 	this.element = document.querySelector(selector);
 	this.relElem = document.querySelector(relativeElementSelector);
+	if (this.element) this.realHeightElem = this.element.querySelector(realHeightElem);
+
 	this.screenHeight = window.innerHeight;
 	this.defaultMargin = margin * 3;
 
@@ -490,13 +516,17 @@ function sideBarHeightCalculator(selector, relativeElementSelector, margin) {
 	};
 
 	this.init = function() {
-		if (!this.element) {
+		if (this.checkHeightForInit || !this.element) {
 			console.log("no sideBar: " + selector);
 			return;
 		}
 		window.addEventListener("load", this.checkDistance);
 		window.addEventListener("scroll", this.checkDistance);
 		console.log("sideBar height calculator: " + selector);
+	};
+
+	this.checkHeightForInit = function() {
+		return this.element && this.realHeightElem.clientHeight > window.innerHeight * ratio;
 	};
 }
 
@@ -534,7 +564,6 @@ function select2IniterForHubspotForms() {
 
 document.addEventListener("DOMContentLoaded", () => {
 	new ScrollToTop().init();
-	mobileSearchOverlay();
 	searchEnterTrigger();
 	window.addEventListener("resize", mobileSearchOverlay);
 	//select2 init for hubspot forms
@@ -553,12 +582,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// INIT DOCS PAGE ONLY
 	if (!document.querySelector("#home-page")) {
+		mobileSearchOverlay();
 		new ScriptAndLinkLoader(".script-link-loader").init();
 		new Anchorer().init();
 		new ScriptEmbedder(".script-embed").init();
-		new sideBarHeightCalculator(".left_sidebar_main", ".footer", 20).init();
+		new sideBarHeightCalculator(".left_sidebar_main", ".footer", 20, ".mCSB_container", 0.75).init();
 		new sideBarHeightCalculator("#right_sidebar", ".footer", 20).init();
-		sideBarHeightCalculator();
 		//github button
 		new GithubUrlElem().init();
 		new ImageMapster().init();
