@@ -274,3 +274,37 @@ body:not(.home-page) .footer-logo svg {
 body:not(.home-page) .footer-logo-section span {
 	display: none;
 }
+
+@media screen and (max-width: 1083px) {
+	body:not(.home-page) .footer-logo img,
+	body:not(.home-page) .footer-logo svg {
+		width: 110px;
+	}
+	body:not(.home-page) .footer .social a {
+		width: 30px;
+		height: 30px;
+	}
+
+	.footer .social a img,
+	.footer .social a svg {
+		max-width: 15px;
+		max-height: 15px;
+	}
+
+	body:not(.home-page) .footer-nav ul {
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	body:not(.home-page) .footer-nav ul li a {
+		font-size: 14px;
+	}
+
+	body:not(.home-page) .footer-nav ul li {
+		padding: 10px 15px;
+	}
+
+	body:not(.home-page) .footer-contacts {
+		margin-top: 18px;
+	}
+}

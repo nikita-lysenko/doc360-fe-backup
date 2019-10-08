@@ -461,30 +461,42 @@ function versionSelectionReplacer() {
 
 // EDIT ON GITHUB BUTTON CREATOR
 
-function GithubUrlElem() {
+function GithubButtonCreator() {
 	var GITHUB_CONTENT_PATH = "/blob/master/public";
 	this.href = "https://github.com/spryker/spryker-documentation";
 	this.link = document.createElement("li");
 	this.parentSelector = ".content_block .content_container .content_block_head .article-action-items ul";
 	this.parent = document.querySelector(this.parentSelector);
+	this.metaUrl = null;
+	this.metaFlag = false;
 
-	this.init = function() {
+	this.checkForMeta = () => {
+		let metaTag = document.head.querySelector('meta[name="description"]');
+		if (metaTag.content) {
+			this.metaFlag = metaTag.content.indexOf("ModuleLink") != -1;
+			if (this.metaFlag) {
+				this.metaUrl = metaTag.content.split("=")[1];
+				metaTag.content = document.head.querySelector("title").innerText;
+			}
+		}
+	};
+
+	this.init = () => {
 		if (!this.parent) {
 			console.log("no github button");
 			return;
 		}
+		this.checkForMeta();
 		this.setLinkAttrs();
 		this.appendLink();
 		console.log("edit on github added");
 	};
 
-	this.setLinkAttrs = function() {
+	this.setLinkAttrs = () => {
 		this.link.classList.add(".js-widget-github");
-		var href = this.href + GITHUB_CONTENT_PATH + window.location.pathname;
-		this.link.innerHTML =
-			'<div class="action-item"><i class="fa fa-github"></i><a class="widget-github-link" href=' +
-			href +
-			' target="_blank">Edit on Github</a></div>';
+		var href = this.metaFlag ? this.metaUrl : this.href + GITHUB_CONTENT_PATH + window.location.pathname;
+		var text = `${this.metaFlag ? "View" : "Edit"} on Github`;
+		this.link.innerHTML = `<div class="action-item"><i class="fa fa-github"></i><a class="widget-github-link" href="${href}" target="_blank">${text}</a></div>`;
 	};
 
 	this.appendLink = () => {
@@ -560,6 +572,21 @@ function select2IniterForHubspotForms() {
 	});
 }
 
+// MOBILE CONTENT MENU HANDLER
+
+function mobileContentMenuHandler() {
+	var origSideBar = document.querySelector(".left_sidebar");
+	var toggler = document.querySelector(".left-sidebar-header-show");
+	var newSideBar = origSideBar.cloneNode(true);
+	toggler.parentNode.appendChild(newSideBar);
+	origSideBar.remove();
+
+	toggler.addEventListener("click", () => {
+		!toggler.classList.contains("open") ? toggler.classList.add("open") : toggler.classList.remove("open");
+		!newSideBar.classList.contains("open") ? newSideBar.classList.add("open") : newSideBar.classList.remove("open");
+	});
+}
+
 /////////////////////////////////////////////////////////// INIT ////////////////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -589,7 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		new sideBarHeightCalculator(".left_sidebar_main", ".footer", 20, ".mCSB_container", 0.75).init();
 		new sideBarHeightCalculator("#right_sidebar", ".footer", 20).init();
 		//github button
-		new GithubUrlElem().init();
+		new GithubButtonCreator().init();
 		new ImageMapster().init();
 		versionSelectionReplacer();
 		watermarkDisabler();
@@ -598,4 +625,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		new inputPlaceholderCorrecotor("#category_filter", "Search by topics").init();
 	}
 	//////////////////
+
+	// MOBILE DOCS
+
+	if (window.innerWidth < 768) {
+		mobileContentMenuHandler();
+	}
 });
