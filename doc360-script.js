@@ -578,8 +578,8 @@ function mobileContentMenuHandler() {
 	var origSideBar = document.querySelector(".left_sidebar");
 	var toggler = document.querySelector(".left-sidebar-header-show");
 	var newSideBar = origSideBar.cloneNode(true);
-	toggler.parentNode.appendChild(newSideBar);
-	origSideBar.remove();
+	// toggler.parentNode.appendChild(newSideBar);
+	// origSideBar.remove();
 
 	toggler.addEventListener("click", () => {
 		!toggler.classList.contains("open") ? toggler.classList.add("open") : toggler.classList.remove("open");
@@ -629,6 +629,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	// MOBILE DOCS
 
 	if (window.innerWidth < 768) {
-		mobileContentMenuHandler();
 	}
 });

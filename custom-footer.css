@@ -308,3 +308,40 @@ body:not(.home-page) .footer-logo-section span {
 		margin-top: 18px;
 	}
 }
+@media screen and (max-width: 549px) {
+	body:not(.home-page) .footer-container {
+		grid-template: 1fr;
+	}
+
+	body:not(.home-page) .footer-nav ul {
+		padding: 0;
+	}
+	body:not(.home-page) .footer .social {
+		width: 100%;
+	}
+	body:not(.home-page) .footer .social a {
+		width: 40px;
+		height: 40px;
+	}
+	body:not(.home-page) .footer .social a img,
+	body:not(.home-page) .footer .social a svg {
+		max-width: 21px;
+		max-height: 21px;
+	}
+	body:not(.home-page) .footer-contacts {
+		margin-top: 40px;
+		margin-bottom: 21px;
+	}
+
+	body:not(.home-page) .footer-nav ul li {
+		padding: 16px 0;
+	}
+
+	body:not(.home-page) .footer-nav ul li:first-child {
+		border-top: none;
+	}
+
+	body:not(.home-page) .footer {
+		padding-top: 0;
+	}
+}
