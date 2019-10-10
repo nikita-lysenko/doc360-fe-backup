@@ -2015,6 +2015,8 @@ body:not(.home-page) .main_content_block {
 	position: absolute;
 	top: 0;
 	left: 0;
+	font-size: 13px;
+	line-height: 24px;
 }
 
 .content_block .content_container .content_block_text ul > li::after {
@@ -2866,6 +2868,276 @@ body:not(.home-page) .main_content_block {
 
 /* Share dropdown end */
 
+/* FEATURE LINKS */
+.feature-link {
+	display: block;
+	border-radius: 10px;
+	border: 1px solid rgb(235, 236, 242);
+	padding: 12px 15px;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.07px;
+	line-height: 24px;
+	color: var(--color-primary);
+	background: white;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.feature-link:hover {
+	text-decoration: none;
+}
+
+.feature-link:after,
+.feature-link::before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.feature-link:after {
+	height: 35px;
+	width: 35px;
+	right: 6px;
+	border-radius: 50%;
+	transition: background-color 0.2s ease;
+}
+.feature-link:before {
+	background: url(https://cdn.document360.io/9fafa0d5-d76f-40c5-8b02-ab9515d3e879/Images/Documentation/arrow-pointing-to-right.png) center
+		no-repeat;
+	background-size: cover;
+	width: 18px;
+	height: 12px;
+	right: 15px;
+	z-index: 1;
+}
+.feature-link:hover:after {
+	background-color: #f3f4fc;
+}
+.feature-link:hover:before {
+	filter: brightness(0.6);
+}
+
+body.dark_theme .feature-link {
+	background: #2d2e44;
+	border-color: transparent;
+}
+body.dark_theme .feature-link:before {
+	filter: contrast(0.5);
+}
+
+body.dark_theme .feature-link:hover:after {
+	background: #3b3c58;
+}
+
+body.dark_theme .feature-link:hover:before {
+	filter: contrast(0.5) brightness(1.5);
+}
+
+.feature-text {
+	display: flex;
+	justify-content: space-between;
+}
+
+.feature-text-wrap {
+	width: calc(100% - 210px);
+}
+
+.feature-images {
+	height: 170px;
+	width: 170px;
+	position: relative;
+	top: 0;
+	right: 0;
+	background: #eff0f9;
+	border-radius: 10px;
+	order: 1;
+}
+.feature-images img {
+	max-width: 80px;
+	max-height: 80px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.feature-text .dark-mode {
+	display: none;
+}
+
+body.dark_theme .feature-images {
+	background: #2d2e44;
+}
+
+body.dark_theme .feature-text .light-mode {
+	display: none;
+}
+
+body.dark_theme .feature-text .dark-mode {
+	display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+	.feature-link {
+		font-size: 14px;
+	}
+	.feature-images {
+		width: 140px;
+		height: 140px;
+	}
+
+	.feature-text-wrap {
+		width: calc(100% - 156px);
+	}
+}
+
+@media screen and (max-width: 548px) {
+	.feature-text {
+		display: block;
+	}
+	.feature-images {
+		width: 100%;
+		order: 0;
+		margin-bottom: 20px;
+	}
+	.feature-text-wrap {
+		order: 1;
+		width: 100%;
+	}
+}
+
+/* Feature links end */
+
+/* MODULE REFERENCE ELEMENT*/
+
+.mr-container {
+	margin: 20px 0;
+}
+
+.mr-list {
+	padding: 0;
+	padding-top: 4px !important;
+	margin: 0 !important;
+	border-radius: 10px;
+	background: white;
+	list-style: none;
+	height: calc(100% - 1px);
+	position: relative;
+	overflow: hidden;
+}
+.mr-list:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+}
+.mr-list-red:before {
+	border-top: 4px solid #d94026;
+}
+
+.mr-list-blue:before {
+	border-top: 4px solid #0461b1;
+}
+.mr-list-green:before {
+	border-top: 4px solid #1fbea0;
+}
+
+.mr-list li:after,
+.mr-list li:before {
+	display: none !important;
+}
+
+.mr-link {
+	word-break: break-word;
+	font-size: 13px !important;
+	font-weight: 600;
+	letter-spacing: 0.07px !important;
+	line-height: 18px !important;
+	color: #999baa !important;
+}
+
+.mr-link:hover {
+	color: var(--color-primary) !important;
+	text-decoration: none;
+}
+
+.mr-container.expanded {
+	max-height: 100%;
+}
+
+.mr-col {
+	margin: 20px 15px 0;
+	flex: 1;
+	min-width: 200px;
+}
+
+.mr-container .mr-title {
+	padding: 18px 15px !important;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 0.09px;
+	line-height: 26px;
+	color: #000;
+}
+
+.mr-list-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.mr-list-container li {
+	padding: 10px 15px !important;
+	border-bottom: 1px solid #e9ecf1;
+	margin: 0 !important;
+}
+
+.mr-container .mr-col.mr-col--4 {
+	max-width: 300px;
+}
+
+body.dark_theme .mr-list {
+	background: #2d2e44;
+}
+
+body.dark_theme .mr-title {
+	color: #fff;
+}
+
+body.dark_theme .mr-link {
+	color: #c5c7e0 !important;
+}
+body.dark_theme .mr-link:hover {
+	color: var(--color-primary) !important;
+}
+body.dark_theme .mr-list-container li {
+	border-color: #464765;
+}
+@media screen and (max-width: 767px) {
+	.mr-container,
+	.mr-col {
+		max-width: 100%;
+		width: 100%;
+		flex: unset;
+	}
+	.mr-col {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.mr-list-container {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+/* Module Reference Element end*/
+
 /*============== DARK THEME STYLES =============*/
 
 body.dark_theme {
@@ -3045,6 +3317,10 @@ body.dark_theme .content_block .content_container .content_block_head .article-a
 }
 body.dark_theme .content_block .content_container .content_block_head .article-action-items .social_share .jssocials-share a span {
 	color: var(--color-text-dark-mode) !important;
+}
+
+body.dark_theme .content_block .content_container .content_block_head .article-action-items ul li .social_share .jssocials-share a i {
+	background: transparent;
 }
 
 /* dark theme end */
@@ -3280,6 +3556,24 @@ body.dark_theme .content_block .content_container .content_block_head .article-a
 	.left_sidebar .left_sidebar_nav ul ul li[style="display: block;"],
 	.container .left_sidebar .left_sidebar_nav ul ul li a[data-option="on"] + ul,
 	.container .left_sidebar .left_sidebar_nav ul ul li a[data-option="on"] {
+		background: white;
+	}
+
+	.stickytop .article-title,
+	.stickytop .artile_info {
+		display: block;
+	}
+
+	body.dark_theme .mobile_header_logo .header_logo img {
+		filter: invert(1);
+	}
+
+	body.dark_theme .mobile_header_logo,
+	body.dark_theme #doc_header .header_top {
+		background: #2d2e44;
+	}
+
+	body.dark_theme .slicknav_menu .slicknav_btn .slicknav_icon-bar {
 		background: white;
 	}
 }
