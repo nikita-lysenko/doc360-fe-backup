@@ -385,8 +385,8 @@ header .header_top .header_top_nav .header_top_nav_left ul {
 	display: block;
 	width: 100vw;
 	height: 100vh;
-	position: fixed;
-	top: 0;
+	position: absolute;
+	top: 100%;
 	left: 0;
 	opacity: 0.9;
 	background-color: #494b4f;
@@ -767,13 +767,14 @@ header .header_bottom .header_search_box .aa-input-container {
 header .header_bottom .header_search_box.header_search_full .aa-input-container {
 	width: 100%;
 }
-
-@media screen and (max-width: 548px) {
+@media screen and (max-width: 768px) {
 	.home-page .search-sec {
 		width: 100%;
 		margin-top: 30px;
 	}
+}
 
+@media screen and (max-width: 548px) {
 	.explain-section .grid {
 		grid-template-columns: 100%;
 		text-align: center;
@@ -1327,6 +1328,10 @@ ul.slick-dots:hover {
 .hubspot-forms .hbspt-form h3 {
 	font-size: 20px;
 	margin: 20px 0;
+}
+
+.hubspot-forms .hbspt-form h1 {
+	display: none;
 }
 
 @media screen and (max-width: 548px) {
@@ -3575,6 +3580,53 @@ body.dark_theme .content_block .content_container .content_block_head .article-a
 
 	body.dark_theme .slicknav_menu .slicknav_btn .slicknav_icon-bar {
 		background: white;
+	}
+
+	body.dark_theme .content-header .left-sidebar-header-show {
+		background: #2d2e44;
+		border-color: #464765;
+	}
+
+	body.dark_theme .content-header .left-sidebar-header-show span {
+		color: white;
+	}
+
+	body.dark_theme .left_sidebar .left-sidebar-header {
+		background: #2d2e44;
+		color: white;
+	}
+	body.dark_theme .left_sidebar .left-sidebar-header:after {
+		background: #464765;
+	}
+	body.dark_theme .left_sidebar .left_sidebar_nav .left_sidebar_nav_menu {
+		background: #1d1e2f;
+		margin-top: 0;
+	}
+	body.dark_theme .container .left_sidebar .left_sidebar_nav ul.leftsidebarnav > li {
+		border-bottom: 1px solid #464765;
+	}
+
+	body.dark_theme .container .docs-main-content .left_sidebar .left_sidebar_nav ul ul li a[data-option="on"] + ul,
+	body.dark_theme .container .docs-main-content .left_sidebar .left_sidebar_nav ul ul li a[data-option="on"],
+	body.dark_theme .left_sidebar .left_sidebar_nav ul ul li[style="display: block;"] {
+		background: #2d2e44;
+	}
+
+	body.dark_theme .container .left_sidebar .left_sidebar_nav ul li a.active {
+		background: #1d1e2f !important;
+	}
+
+	body.dark_theme .slicknav_menu .slicknav_nav {
+		background: #1d1e2f;
+	}
+
+	body.dark_theme header#doc_header .versions-selection .active .v-name {
+		color: var(--color-primary);
+	}
+
+	body.dark_theme .slicknav_nav:not(.slicknav_hidden)::before {
+		background: #000;
+		opacity: 0.8;
 	}
 }
 
