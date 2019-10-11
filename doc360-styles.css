@@ -1320,7 +1320,6 @@ ul.slick-dots:hover {
 .hubspot-forms .tab-panes {
 	position: relative;
 	width: 100%;
-	min-height: 760px;
 }
 
 .hubspot-forms .hbspt-form h1,
@@ -1335,10 +1334,6 @@ ul.slick-dots:hover {
 }
 
 @media screen and (max-width: 548px) {
-	.hubspot-forms .tab-panes {
-		min-height: 940px;
-	}
-
 	.hubspot-forms .hbspt-form h1,
 	.hubspot-forms .hbspt-form h2,
 	.hubspot-forms .hbspt-form h3 {
@@ -1351,16 +1346,14 @@ ul.slick-dots:hover {
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.2s ease;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	background-color: white;
+	height: 0;
 }
 
 .hubspot-forms .tab-pane.active {
 	visibility: visible;
 	opacity: 1;
+	height: auto;
 }
 
 .hubspot-forms .tab-nav-links {
@@ -1375,6 +1368,9 @@ ul.slick-dots:hover {
 	width: 180px;
 	border: solid 1px #c0c3d4;
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .hubspot-forms .tab-nav-link.active {
@@ -1447,7 +1443,7 @@ ul.slick-dots:hover {
 	letter-spacing: 0.07px;
 	color: #999baa;
 	box-shadow: none;
-	width: 100%;
+	width: 100% !important;
 	max-width: 100%;
 	box-sizing: border-box;
 	height: unset;

@@ -627,7 +627,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	//////////////////
 
 	// MOBILE DOCS
-
-	if (window.innerWidth < 768) {
-	}
 });
